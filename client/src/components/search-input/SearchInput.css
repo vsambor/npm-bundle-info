@@ -1,0 +1,19 @@
+.search-input-container {
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    background: transparent;
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
+    min-width: 550px;
+}
+
+.search-input-container > input {
+  font-size: 2rem;
+    padding: 15px 45px 15px 30px;
+    /* font-family: "Source Code Pro", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; */
+    font-weight: 300;
+    width: 100%;
+    box-sizing: border-box;
+}

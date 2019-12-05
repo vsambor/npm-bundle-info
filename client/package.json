@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.12.0",
+    "react-autocomplete": "^1.8.1",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0"
   },
@@ -27,5 +28,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1"
   }
 }

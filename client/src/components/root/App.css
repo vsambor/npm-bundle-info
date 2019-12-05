@@ -14,3 +14,23 @@
   font-size: 10vmin;
 }
 
+.app-stats-chart-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.app-stats-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  min-height: 200px;
+  align-content: center;
+}
+
+.app-chart-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  min-height: 200px;
+  align-content: center;
+}

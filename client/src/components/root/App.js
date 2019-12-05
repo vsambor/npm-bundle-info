@@ -10,12 +10,12 @@ function App() {
       <header className="app-header">Bundle Info</header>
 
       <main>
-        <SearchInput />
-        <div>
-          <section>
+        <SearchInput onItemSelected={_handleOnItemSelected} />
+        <div className="app-stats-chart-container">
+          <section className="app-stats-container">
             <Stats></Stats>
           </section>
-          <section>
+          <section className="app-chart-container">
             <Chart></Chart>
           </section>
         </div>
@@ -26,6 +26,10 @@ function App() {
       </footer>
     </div>
   );
+}
+
+function _handleOnItemSelected(item) {
+  console.log('App: item selected: ', item)
 }
 
 export default App;

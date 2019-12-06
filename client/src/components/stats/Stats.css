@@ -1,0 +1,19 @@
+.stats-container {
+  text-align: center;
+  width: 20vw;
+}
+
+.stats-inner-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.stats-inner-container h1 { 
+  margin-bottom: 0;
+}
+
+.stats-inner-container small { 
+  font-size: 2vh
+}
+

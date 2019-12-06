@@ -10,8 +10,12 @@
 }
 
 .app-header {
-  padding: 20px;
+  padding: 50px;
   font-size: 10vmin;
+}
+
+.app-footer {
+  margin-top: 200px;
 }
 
 .app-stats-chart-container {
@@ -33,4 +37,8 @@
   min-width: 500px;
   min-height: 200px;
   align-content: center;
+}
+
+.app-main-inner-container {
+  margin-top: 13vh;
 }

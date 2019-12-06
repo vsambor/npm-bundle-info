@@ -9,15 +9,6 @@
   color: white;
 }
 
-.app-header {
-  padding: 50px;
-  font-size: 10vmin;
-}
-
-.app-footer {
-  margin-top: 200px;
-}
-
 .app-stats-chart-container {
   display: flex;
   flex-direction: row;

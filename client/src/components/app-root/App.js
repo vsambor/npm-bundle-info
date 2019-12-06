@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+import AppHeader from '../app-header'
+import AppFooter from '../app-footer'
 import SearchInput from '../search-input'
 import Stats from '../stats'
 import Chart from '../chart'
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import Loader from 'react-loader-spinner'
 
 function App() {
@@ -16,7 +18,7 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app-header">Bundle Info</header>
+      <AppHeader />
 
       <main>
         <SearchInput onItemSelected={_handleOnItemSelected} />
@@ -26,22 +28,16 @@ function App() {
 
           {!isSpinnerVisible &&
             <div className="app-stats-chart-container">
-              <section className="app-stats-container">
-                <Stats></Stats>
-              </section>
-              <section className="app-chart-container">
-                <Chart></Chart>
-              </section>
+              <section className="app-stats-container"><Stats /></section>
+              <section className="app-chart-container"><Chart /></section>
             </div>
           }
         </div>
       </main>
 
-      <footer className="app-footer">
-        {(new Date()).getFullYear()} © Bundle Info. All rights reserved.
-      </footer>
+      <AppFooter />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

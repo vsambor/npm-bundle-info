@@ -4,7 +4,7 @@ Provides information about npm packages like size when minified or zipped across
 ## Status
 [![Maintainability](https://api.codeclimate.com/v1/badges/ee6efe9bb95fd737a177/maintainability)](https://codeclimate.com/github/vsambor/npm-bundle-infot/maintainability)
 
-## Versions - main technologies
+## Main technologies VERSIONS
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)
 ![npm](https://img.shields.io/badge/npm-6.10.2-yellow.svg)
 ![express](https://img.shields.io/badge/express-4.16.x-orange.svg)
@@ -30,27 +30,26 @@ Provides information about npm packages like size when minified or zipped across
 - [express](https://expressjs.com/)
 - [nodemon](https://nodemon.io/)
 - [body-parser](https://github.com/expressjs/body-parser)
-- [morgan]()
+- [morgan](https://github.com/expressjs/morgan)
 
 ## Frontend
 
 - [reactjs](https://reactjs.org//)
-- [react-scripts]()
-- [yarn]()
+- [react-scripts](https://github.com/facebook/create-react-app)
+- [yarn](https://yarnpkg.com/lang/en/)
 - [webpack](https://webpack.js.org/)
 - [babel](https://babeljs.io/)
-- [esllint](https://eslint.org/)
 - [jest](https://karma-runner.github.io/2.0/index.html)
-- [emzyme](https://mochajs.org/)
+- [emzyme](https://airbnb.io/enzyme/)
 
 
 # Usage
 
 ### For Frontend go to [Frontend README](https://github.com/vsambor/npm-bundle-info/client/README.md)
 
-### For Backend go to [Backend README]((https://github.com/vsambor/npm-bundle-info/server/README.md))
+### For Backend go to [Backend README](https://github.com/vsambor/npm-bundle-info/server/README.md)
 
 
 # Result
 
-todo - add image 
+<img width="1181" alt="Screen Shot 2019-12-07 at 11 04 46 PM" src="https://user-images.githubusercontent.com/26199384/70381162-00337980-1946-11ea-80b8-a486b97777e1.png">

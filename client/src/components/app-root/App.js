@@ -5,26 +5,25 @@ import AppFooter from '../app-footer'
 import SearchInput from '../search-input'
 import Stats from '../stats'
 import Chart from '../chart'
+import { getBundleInfoAPI } from '../../services/hostApi'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import Loader from 'react-loader-spinner'
 
 function App() {
   const [isSpinnerVisible, setSpinnerVisible] = useState(false)
+  const [bundleData, setBundleData] = useState()
 
   const _handleOnItemSelected = (item) => {
-    console.log('App: item selected: ', item)
-    setSpinnerVisible(!isSpinnerVisible)
-  }
+    if (item && item.package && item.package.name && item.package.version) {
+      getBundleInfoAPI(item.package.name, item.package.version)
+        .then(resposeData => setBundleData(resposeData))
+    } else {
+      // TODO - implement an error handler component?
+      console.warn('WARNING: The selected bundle does not have name or version!')
+    }
 
-  // TODO- provides something similar from backend
-  const bundleData = {
-    compressionData: [
-      { name: 'Minified', data: [55, 60] },
-      { name: 'Minified + Gzipped', data: [45, 40] }
-    ],
-    versions: ['v1.0', 'v1.1']
+    // setSpinnerVisible(!isSpinnerVisible)
   }
-
 
   return (
     <div className="app">

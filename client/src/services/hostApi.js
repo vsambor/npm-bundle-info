@@ -1,25 +1,8 @@
-import {getAPI} from '../helpers/serviceUtils'
+import { getAPI } from '../helpers/serviceUtils'
 
-export function getInfo(packageString) {
-  return getAPI(`/api/size?package=${packageString}&record=true`)
-}
+// TODO - put this in a config for prod/dev.
+const hostOrigin = 'http://localhost:3003'
 
-export function getExports(packageString) {
-  return getAPI(`/api/exports?package=${packageString}`)
-}
-
-export function getExportsSizes(packageString) {
-  return getAPI(`/api/exports-sizes?package=${packageString}`)
-}
-
-export function getHistory(packageString) {
-  return getAPI(`/api/package-history?package=${packageString}`)
-}
-
-export function getRecentSearches(limit) {
-  return getAPI(`/api/recent?limit=${limit}`)
-}
-
-export function getSimilar(packageName) {
-  return AgetAPI(`/api/similar-packages?package=${packageName}`)
+export function getBundleInfoAPI(bundleName, bundleVersion) {
+  return getAPI(`${hostOrigin}/api/bundle?name=${bundleName}&version=${bundleVersion}`)
 }

@@ -18,10 +18,7 @@ Chart.propTypes = {
 
 Chart.defaultProps = {
   bundleChartData: {
-    compressionData: {
-      name: '',
-      data: []
-    },
+    compressionData: [{ name: '', data: [] }],
     versions: []
   }
 }

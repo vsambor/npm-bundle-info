@@ -1,6 +1,6 @@
 {
   "short_name": "Bundle Info",
-  "name": "Create React App Sample",
+  "name": "Provides information about npm packages size on multiple versions",
   "icons": [
     {
       "src": "favicon.ico",

@@ -17,8 +17,8 @@
 .app-stats-container {
   display: flex;
   flex-direction: column;
-  min-width: 500px;
-  min-height: 200px;
+  width: 500px;
+  height: 200px;
   align-content: center;
 }
 
@@ -32,4 +32,20 @@
 
 .app-main-inner-container {
   margin-top: 13vh;
+}
+
+@media screen and (max-width: 900px) {
+  .app-stats-chart-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-stats-container {
+    margin-bottom: 60px;
+    align-items: center;
+  }
+
+  .app-chart-container {
+    align-items: center;
+  } 
 }

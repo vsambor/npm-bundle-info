@@ -19,6 +19,8 @@ SearchInput.defaultProps = {
  *  - calls npm apis for suggestions based on user input
  *  - displays the suggestions
  *  - on form submit passes the selected bundle to onItemSelected prop
+ * 
+ * @param {Object} props - @see SearchInput.propTypes 
  */
 function SearchInput(props) {
   const { onItemSelected } = props

@@ -1,3 +1,24 @@
 .chart-container {
+  margin-top: -50px
+}
 
+.apexcharts-tooltip.light .apexcharts-tooltip-title {
+  background: #4a5a65 !important;
+}
+
+.apexcharts-legend-series {
+  text-align: left;
+}
+
+.apexcharts-legend-series .apexcharts-legend-text {
+  color: white !important;
+}
+
+.apexcharts-tooltip-series-group {
+  color: black;
+}
+
+.apexcharts-yaxis-texts-g text, 
+.apexcharts-xaxis-texts-g text {
+  fill: white;
 }

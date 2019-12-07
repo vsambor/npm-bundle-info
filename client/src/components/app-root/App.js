@@ -16,6 +16,16 @@ function App() {
     setSpinnerVisible(!isSpinnerVisible)
   }
 
+  // TODO- provides something similar from backend
+  const bundleData = {
+    compressionData: [
+      { name: 'Minified', data: [55, 60] },
+      { name: 'Minified + Gzipped', data: [45, 40] }
+    ],
+    versions: ['v1.0', 'v1.1']
+  }
+
+
   return (
     <div className="app">
       <AppHeader />
@@ -29,7 +39,7 @@ function App() {
           {!isSpinnerVisible &&
             <div className="app-stats-chart-container">
               <section className="app-stats-container"><Stats /></section>
-              <section className="app-chart-container"><Chart /></section>
+              <section className="app-chart-container"><Chart bundleChartData={bundleData} /></section>
             </div>
           }
         </div>

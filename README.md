@@ -4,7 +4,7 @@ Provides information about npm packages like size when minified or zipped across
 ## Status
 [![Maintainability](https://api.codeclimate.com/v1/badges/ee6efe9bb95fd737a177/maintainability)](https://codeclimate.com/github/vsambor/npm-bundle-infot/maintainability)
 
-## Main Versions
+## Versions - main technologies
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)
 ![npm](https://img.shields.io/badge/npm-6.10.2-yellow.svg)
 ![express](https://img.shields.io/badge/express-4.16.x-orange.svg)
@@ -22,30 +22,35 @@ Provides information about npm packages like size when minified or zipped across
 [Design/Architecutre](https://github.com/vsambor/npm-bundle-info/wiki/Architecture)
 
 ## Kanban
-[Bundle Info](https://github.com/vsambor/npm-bundle-info/projects/2)
+[Bundle Info Dashboard](https://github.com/vsambor/npm-bundle-info/projects/2)
 
 ## Backend
 - [node.js](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
-- [nodemon](https://nodemon.io/)
 - [express](https://expressjs.com/)
+- [nodemon](https://nodemon.io/)
 - [body-parser](https://github.com/expressjs/body-parser)
-- [cors](https://github.com/expressjs/cors)
 - [morgan]()
-- [helmet]()
-- [serve-favicon](https://github.com/expressjs/serve-favicon)
 
 ## Frontend
 
 - [reactjs](https://reactjs.org//)
+- [react-scripts]()
+- [yarn]()
 - [webpack](https://webpack.js.org/)
 - [babel](https://babeljs.io/)
 - [esllint](https://eslint.org/)
-- [karma](https://karma-runner.github.io/2.0/index.html)
-- [mocha](https://mochajs.org/)
-- [nightwatch](http://nightwatchjs.org/)
+- [jest](https://karma-runner.github.io/2.0/index.html)
+- [emzyme](https://mochajs.org/)
 
 
 # Usage
 
-- - - TODO - - - 
+### For Frontend go to [Frontend README](https://github.com/vsambor/npm-bundle-info/client/README.md)
+
+### For Backend go to [Backend README]((https://github.com/vsambor/npm-bundle-info/server/README.md))
+
+
+# Result
+
+todo - add image 

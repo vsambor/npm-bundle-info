@@ -12,5 +12,5 @@ export function formatSize(value) {
     size = value / 1024 / 1024
   }
 
-  return { unit, size }
+  return { unit: unit, size: size.toFixed(2) }
 }

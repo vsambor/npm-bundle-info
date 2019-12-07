@@ -26,7 +26,7 @@ function set(key, value) {
 }
 
 /**
- * Removs a key and it's value from cache.
+ * Removes a key and it's value from cache.
  * 
  * @param {String} key 
  */

@@ -49,8 +49,10 @@ function SearchInput(props) {
   }
 
   const _renderSuggestionItem = item => {
+    const key = item.package.name + item.package.version + item.searchScore
+
     return (
-      <div className="search-input-suggestion-container">
+      <div className="search-input-suggestion-container" key={key}>
         <div className="search-input-suggestion-name">
           {item.package.name}
         </div>
@@ -63,6 +65,7 @@ function SearchInput(props) {
 
   return (
     <div className="search-input-container">
+      {/* TODO - replace with a mentained autocomplete component to avoid console warnings. */}
       <Autocomplete
         inputProps={{ placeholder: 'Search package...', className: 'autocomplete-input' }}
         getItemValue={item => item.package.name}

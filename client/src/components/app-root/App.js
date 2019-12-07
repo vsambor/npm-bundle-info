@@ -11,7 +11,7 @@ import Loader from 'react-loader-spinner'
 
 function App() {
   const [isSpinnerVisible, setSpinnerVisible] = useState(false)
-  const [bundleData, setBundleData] = useState()
+  const [bundleData, setBundleData] = useState({})
 
   const _handleOnItemSelected = (item) => {
     if (item && item.package && item.package.name && item.package.version) {
@@ -37,8 +37,8 @@ function App() {
 
           {!isSpinnerVisible &&
             <div className="app-stats-chart-container">
-              <section className="app-stats-container"><Stats /></section>
-              <section className="app-chart-container"><Chart bundleChartData={bundleData} /></section>
+              <section className="app-stats-container"><Stats size={bundleData.stats} /></section>
+              <section className="app-chart-container"><Chart bundleChartData={bundleData.chart} /></section>
             </div>
           }
         </div>

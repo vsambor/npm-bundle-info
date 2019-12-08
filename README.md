@@ -2,7 +2,8 @@
 Provides information about npm packages like size when minified or zipped across multiple bundle versions. 
 
 ## Status
-[![Maintainability](https://api.codeclimate.com/v1/badges/ee6efe9bb95fd737a177/maintainability)](https://codeclimate.com/github/vsambor/npm-bundle-infot/maintainability)
+ - TODO - test passing build, test coverage, security check etc.
+
 
 ## Main technologies VERSIONS
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)
@@ -16,7 +17,9 @@ Provides information about npm packages like size when minified or zipped across
 - Search input with autocomplete
 - Show minified bundle size
 - Show minified + gzipped bundle size
+- Retrieves the last 3 versions and the last major version of a package
 - Show data in a bar chart
+- Uses a persistent cache system when retrieving bundle stats
 
 ## High level architercutre
 [Design/Architecutre](https://github.com/vsambor/npm-bundle-info/wiki/Architecture)
@@ -45,9 +48,9 @@ Provides information about npm packages like size when minified or zipped across
 
 # Usage
 
-### For Frontend go to [Frontend README](https://github.com/vsambor/npm-bundle-info/client/README.md)
+### For Frontend go to [Frontend README](https://github.com/vsambor/npm-bundle-info/blob/master/client/README.md)
 
-### For Backend go to [Backend README](https://github.com/vsambor/npm-bundle-info/server/README.md)
+### For Backend go to [Backend README](https://github.com/vsambor/npm-bundle-info/blob/master/server/README.md)
 
 
 # Result

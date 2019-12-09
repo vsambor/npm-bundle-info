@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     bundleSizeData = bundleService.getBundleSize(name, version)
     res.send(bundleSizeData)
   } catch (error) {
-    res.status(500).send({ error: errpr.toString() });
+    res.status(500).send({ error: error.toString() });
   }
 })
 

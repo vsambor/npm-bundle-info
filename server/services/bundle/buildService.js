@@ -46,7 +46,7 @@ async function _runRollup(packagePath) {
 
   const outputOptions = {
     file: path.join(packagePath, 'bundle.js'),
-    format: 'cjs',
+    format: 'cjs'
   }
 
   const bundle = await rollup.rollup(inputOptions)

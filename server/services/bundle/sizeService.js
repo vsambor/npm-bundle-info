@@ -29,7 +29,7 @@ async function getSize(packageName, packagePath) {
   const minifiedSize = stats['bundle.js'].minified
   const gzippedSize = stats['bundle.js'].gzipped
 
-  // await removePackage(packagePath)
+  await removePackage(packagePath)
   return { minifiedSize, gzippedSize }
 }
 

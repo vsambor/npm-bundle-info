@@ -2,8 +2,7 @@
 Provides information about npm packages like size when minified or zipped across multiple bundle versions. 
 
 ## Status
- - TODO - test passing build, test coverage, security check etc.
-
+![](https://img.shields.io/github/workflow/status/vsambor/npm-bundle-info/Node%20CI?style=for-the-badge)
 
 ## Main tech versions
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)

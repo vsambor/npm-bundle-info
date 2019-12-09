@@ -5,7 +5,7 @@ Provides information about npm packages like size when minified or zipped across
  - TODO - test passing build, test coverage, security check etc.
 
 
-## Main technologies VERSIONS
+## Main tech VERSIONS
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)
 ![npm](https://img.shields.io/badge/npm-6.10.2-yellow.svg)
 ![express](https://img.shields.io/badge/express-4.16.x-orange.svg)
@@ -27,15 +27,19 @@ Provides information about npm packages like size when minified or zipped across
 ## Kanban
 [Bundle Info Dashboard](https://github.com/vsambor/npm-bundle-info/projects/2)
 
-## Backend
+## Backend tech stack
+
 - [node.js](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
 - [express](https://expressjs.com/)
 - [nodemon](https://nodemon.io/)
 - [body-parser](https://github.com/expressjs/body-parser)
+- [cors](https://github.com/expressjs/body-parser)
 - [morgan](https://github.com/expressjs/morgan)
+- [rollup](https://rollupjs.org/guide/en/)
+- [jest](https://jestjs.io/)
 
-## Frontend
+## Frontend tech stack
 
 - [reactjs](https://reactjs.org//)
 - [react-scripts](https://github.com/facebook/create-react-app)

@@ -5,7 +5,7 @@ Provides information about npm packages like size when minified or zipped across
  - TODO - test passing build, test coverage, security check etc.
 
 
-## Main tech VERSIONS
+## Main tech versions
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)
 ![npm](https://img.shields.io/badge/npm-6.10.2-yellow.svg)
 ![express](https://img.shields.io/badge/express-4.16.x-orange.svg)
@@ -50,13 +50,16 @@ Provides information about npm packages like size when minified or zipped across
 - [emzyme](https://airbnb.io/enzyme/)
 
 
-# Usage
+## Usage
 
 ### For Frontend go to [Frontend README](https://github.com/vsambor/npm-bundle-info/blob/master/client/README.md)
 
 ### For Backend go to [Backend README](https://github.com/vsambor/npm-bundle-info/blob/master/server/README.md)
 
+## Misc
+ - github workflow CI
 
-# Result
+
+## Result
 
 <img width="1181" alt="Screen Shot 2019-12-07 at 11 04 46 PM" src="https://user-images.githubusercontent.com/26199384/70381162-00337980-1946-11ea-80b8-a486b97777e1.png">

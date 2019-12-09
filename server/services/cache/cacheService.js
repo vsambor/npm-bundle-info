@@ -1,3 +1,15 @@
+/**
+ * Handles a minimalistic persistent cache system.
+ * 
+ * Main roles:
+ * - uses a file cache.json
+ * - allow storing keys-values
+ * - allows retrieving values by key
+ * - allows removing keys
+ * 
+ * - TODO - handle concurency on cache.json
+ ***/
+
 const fs = require('fs')
 
 const CACHE_FILE_PATH = __dirname + '/cache.json'
@@ -6,6 +18,7 @@ const CACHE_FILE_PATH = __dirname + '/cache.json'
  * Returs the value of cache corresponding to provided key.
  * 
  * @param {String} key 
+ * @returns {Any} - cache value for a key
  */
 function get(key) {
   const cache = _getCacheObject()
@@ -51,4 +64,9 @@ function _setCacheObject(cache) {
   fs.writeFileSync(CACHE_FILE_PATH, JSON.stringify(cache))
 }
 
-module.exports = { get, set, deleteKey, deleteAll }
+module.exports = {
+  get,
+  set,
+  deleteKey,
+  deleteAll
+}

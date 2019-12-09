@@ -2,6 +2,7 @@ import React from 'react'
 import './Chart.css'
 import PropTypes from 'prop-types';
 import ReactApexChart from 'react-apexcharts'
+import { formatSize } from '../../helpers/statsUtils'
 
 
 Chart.propTypes = {
@@ -42,7 +43,23 @@ function Chart(props) {
     plotOptions: { bar: { horizontal: false } },
     xaxis: { type: 'category', categories: bundleChartData.versions },
     legend: { position: 'right', offsetY: 116 },
-    fill: { opacity: 1 }
+    fill: { opacity: 1 },
+    dataLabels: {
+      enabled: true,
+      formatter: (val, opt) => {
+        const formattedValue = formatSize(val)
+        return formattedValue.size + formattedValue.unit;
+      }
+    },
+    tooltip: {
+      enabled: true,
+      y: {
+        formatter: series => {
+          const formattedValue = formatSize(series)
+          return formattedValue.size + formattedValue.unit;
+        }
+      }
+    }
   }
 
   const series = bundleChartData.compressionData

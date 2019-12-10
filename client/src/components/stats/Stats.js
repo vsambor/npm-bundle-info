@@ -6,15 +6,15 @@ import { formatSize } from '../../helpers/statsUtils'
 
 Stats.propTypes = {
   size: PropTypes.shape({
-    minified: PropTypes.number.isRequired,
-    zipped: PropTypes.number.isRequired
+    minifiedSize: PropTypes.number.isRequired,
+    gzippedSize: PropTypes.number.isRequired
   }).isRequired
 }
 
 Stats.defaultProps = {
   size: {
-    minified: 0,
-    zipped: 0
+    minifiedSize: 0,
+    gzippedSize: 0
   }
 }
 
@@ -25,8 +25,8 @@ Stats.defaultProps = {
  */
 function Stats(props) {
   const { size } = props
-  const formattedMinified = formatSize(size.minified)
-  const formattedZipped = formatSize(size.zipped)
+  const formattedMinified = formatSize(size.minifiedSize)
+  const formattedZipped = formatSize(size.gzippedSize)
 
   return (
     <div className="stats-container">

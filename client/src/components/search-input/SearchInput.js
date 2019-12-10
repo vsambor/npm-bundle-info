@@ -44,6 +44,18 @@ function SearchInput(props) {
     onItemSelected(itemValue)
   }
 
+  const _handleOnSubmit = event => {
+    event.preventDefault()
+
+    const input = document.querySelector('.autocomplete-input');
+    const [packageName, version] = input.value.split('@')
+    const packageValue = {
+      package: { version: version, name: packageName }
+    }
+
+    _handleOnSelect(packageName, packageValue)
+  }
+
   const _renderSuggestionMenu = (items, value, style) => {
     return <div className="search-input-menu" children={items}></div>
   }
@@ -64,7 +76,7 @@ function SearchInput(props) {
   }
 
   return (
-    <div className="search-input-container">
+    <form className="search-input-container" onSubmit={_handleOnSubmit}>
       {/* TODO - replace with a mentained autocomplete component to avoid console warnings. */}
       <Autocomplete
         inputProps={{ placeholder: 'Search package...', className: 'autocomplete-input' }}
@@ -76,7 +88,7 @@ function SearchInput(props) {
         onChange={_handleOnChange}
         onSelect={_handleOnSelect}
       />
-    </div>
+    </form>
   )
 }
 

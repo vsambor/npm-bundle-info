@@ -15,8 +15,10 @@ function App() {
 
   const _handleOnItemSelected = (item) => {
     if (item && item.package && item.package.name && item.package.version) {
+      setSpinnerVisible(true)
       getBundleInfoAPI(item.package.name, item.package.version)
         .then(resposeData => setBundleData(resposeData))
+        .finally(() => setSpinnerVisible(false))
     } else {
       // TODO - implement an error handler component?
       console.warn('WARNING: The selected bundle does not have name or version!')

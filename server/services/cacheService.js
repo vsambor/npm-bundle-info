@@ -12,7 +12,7 @@
 
 const fs = require('fs')
 
-const CACHE_FILE_PATH = __dirname + '/cache.json'
+const CACHE_FILE = '/tmp/bundle-info/cache.json'
 
 /**
  * Returs the value of cache corresponding to provided key.
@@ -57,11 +57,15 @@ function deleteAll() {
 }
 
 function _getCacheObject() {
-  return JSON.parse(fs.readFileSync(CACHE_FILE_PATH))
+  if (fs.existsSync(CACHE_FILE)) {
+    return JSON.parse(fs.readFileSync(CACHE_FILE))
+  }
+
+  return {}
 }
 
 function _setCacheObject(cache) {
-  fs.writeFileSync(CACHE_FILE_PATH, JSON.stringify(cache))
+  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache))
 }
 
 module.exports = {

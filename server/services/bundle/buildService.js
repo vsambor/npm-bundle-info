@@ -38,7 +38,7 @@ async function _runRollup(packagePath) {
     input: path.join(packagePath, 'index.js'),
     treeshake: false,
     plugins: [
-      sizeSnapshot({ snapshotPath: path.join(packagePath, 'stats.js') }),
+      sizeSnapshot({ snapshotPath: path.join(packagePath, 'stats.js'), printInfo: false }),
       resolve(),
       commonjs()
     ]

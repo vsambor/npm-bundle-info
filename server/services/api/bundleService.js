@@ -9,49 +9,77 @@
  * 5. returns the bundle data
  ***/
 
-const validatorService = require('../../services/bundle/validatorService')
-const cacheService = require('../cache/cacheService')
-const { installPackage } = require('../../services/bundle/installService')
-const { getSize } = require('../../services/bundle/sizeService')
+const { isPackageValid } = require('../bundle/validatorService')
+const cacheService = require('../cacheService')
+const { installPackage } = require('../bundle/installService')
+const { getSize } = require('../bundle/sizeService')
+const { getVersions } = require('../bundle/versionService')
 
 /**
  * Manages all the steps to get the bundle size.
  * 
- * @param {String} name - bundle name
- * @param {String} version - bundle version
+ * @param {String} packageName
+ * @param {String} packageVersion
  */
-async function getBundleSize(name, version) {
-  // 1. validate packge...
+async function getBundleSize(packageName, packageVersion) {
+  const isValid = await isPackageValid(packageName)
 
-  // 2. const versions = getVersions(name, version)
+  if (!isValid) {
+    // TODO - handle better.
+    throw Error('Package name not valid!')
+  }
 
-  // const cacheKey = `${name}-${version}`
-  // 3. const cachedValue = cacheService.get(cacheKey);
+  const versionsAndSizes = await _getVersionsAndSizes(packageName, packageVersion)
 
-  // if (cachedValue) {
-  //    // returns
-  // }
+  return _cretateBundleData(versionsAndSizes)
+}
 
-  // 4.
-  const packagePath = await installPackage(name, version)
-  const size = await getSize(name, packagePath)
+async function _getVersionsAndSizes(packageName, packageVersion) {
+  const versionsAndSizes = []
 
-  // 5. 
+  const versions = await getVersions(packageName, packageVersion)
+
+  for (const version of versions) {
+    const cacheKey = `${packageName}-${version}`
+    let versionSize = cacheService.get(cacheKey)
+
+    if (!versionSize) {
+      const packagePath = await installPackage(packageName, version)
+      versionSize = await getSize(packageName, packagePath)
+
+      cacheService.set(cacheKey, versionSize)
+    }
+
+    versionsAndSizes.push({ version: version, sizes: versionSize })
+  }
+
+  return versionsAndSizes
+}
+
+function _cretateBundleData(versionsSizes) {
   const bundleSizeData = {
-    stats: {
-      minified: 34500,
-      zipped: 1500
-    },
+    stats: {},
     chart: {
       compressionData: [
-        { name: 'Minified', data: [55, 60] },
-        { name: 'Minified + Gzipped', data: [45, 40] }
+        { name: 'Minified', data: [] },
+        { name: 'Minified + Gzipped', data: [] }
       ],
-      versions: ['v1.0', 'v1.1']
+      versions: []
     }
   }
 
-  return bundleSizeData;
+  if (versionsSizes.length) {
+    bundleSizeData.stats = versionsSizes[0].sizes
+
+    for (versionSize of versionsSizes) {
+      // Using shift to have the bigger version first on the frontend chart.
+      bundleSizeData.chart.compressionData[0]['data'].unshift(versionSize.sizes.minifiedSize)
+      bundleSizeData.chart.compressionData[1]['data'].unshift(versionSize.sizes.gzippedSize)
+      bundleSizeData.chart.versions.unshift(versionSize.version)
+    }
+  }
+
+  return bundleSizeData
 }
 
 module.exports = {

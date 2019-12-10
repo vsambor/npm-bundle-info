@@ -12,7 +12,7 @@ const path = require('path')
 const sanitize = require('sanitize-filename');
 const exec = require('util').promisify(require('child_process').exec)
 
-const BUNDLE_INSTALL_PATH = '/tmp/bundle-info'
+const BUNDLE_INSTALL_PATH = '/tmp/bundle-info/build'
 const PACKAGE_FLAGS = [
   "no-package-lock",
   "no-shrinkwrap",

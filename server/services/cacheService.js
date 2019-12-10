@@ -2,75 +2,83 @@
  * Handles a minimalistic persistent cache system.
  * 
  * Main roles:
- * - uses a file cache.json
+ * - uses a json file to store data
  * - allow storing keys-values
  * - allows retrieving values by key
  * - allows removing keys
- * 
- * - TODO - handle concurency on cache.json
  ***/
 
 const fs = require('fs')
 
-const CACHE_FILE = '/tmp/bundle-info/cache.json'
-
-/**
- * Returs the value of cache corresponding to provided key.
- * 
- * @param {String} key 
- * @returns {Any} - cache value for a key
- */
-function get(key) {
-  const cache = _getCacheObject()
-  return cache[key]
-}
-
-/**
- * Sets a value in cache. 
- * Note: it overrides the value if already exists.
- * 
- * @param {String} key 
- * @param {Any} value 
- */
-function set(key, value) {
-  const cache = _getCacheObject()
-  cache[key] = value
-  _setCacheObject(cache)
-}
-
-/**
- * Removes a key and it's value from cache.
- * 
- * @param {String} key 
- */
-function deleteKey(key) {
-  const cache = _getCacheObject()
-  delete cache[key]
-  _setCacheObject(cache)
-}
-
-/**
- * Flushes all cache elements.
- */
-function deleteAll() {
-  _setCacheObject({})
-}
-
-function _getCacheObject() {
-  if (fs.existsSync(CACHE_FILE)) {
-    return JSON.parse(fs.readFileSync(CACHE_FILE))
+class CacheService {
+  constructor(cacheName) {
+    this.cacheFilePath = `/tmp/bundle-info/${cacheName}.json`
   }
 
-  return {}
-}
+  /**
+   * Returs the value of cache corresponding to provided key.
+   * 
+   * @param {String} key 
+   * @returns {Any} - cache value for a key
+   */
+  get(key) {
+    const cache = this._getCacheObject()
+    return cache[key]
+  }
 
-function _setCacheObject(cache) {
-  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache))
+  /**
+   * Sets a value in cache. 
+   * Note: it overrides the value if already exists.
+   * 
+   * @param {String} key 
+   * @param {Any} value 
+   */
+  set(key, value) {
+    const cache = this._getCacheObject()
+    cache[key] = value
+    this._setCacheObject(cache)
+  }
+
+  /**
+   * Removes a key and it's value from cache.
+   * 
+   * @param {String} key 
+   */
+  deleteKey(key) {
+    const cache = this._getCacheObject()
+    delete cache[key]
+    this._setCacheObject(cache)
+  }
+
+  /**
+   * Flushes all cache elements.
+   */
+  deleteAll() {
+    this._setCacheObject({})
+  }
+
+  /**
+   * Removes the cache file entirely.
+   */
+  prune() {
+    if (fs.existsSync(this.cacheFilePath)) {
+      fs.unlinkSync(this.cacheFilePath)
+    }
+  }
+
+  _getCacheObject() {
+    if (fs.existsSync(this.cacheFilePath)) {
+      return JSON.parse(fs.readFileSync(this.cacheFilePath))
+    }
+
+    return {}
+  }
+
+  _setCacheObject(cache) {
+    fs.writeFileSync(this.cacheFilePath, JSON.stringify(cache))
+  }
 }
 
 module.exports = {
-  get,
-  set,
-  deleteKey,
-  deleteAll
+  CacheService
 }

@@ -10,7 +10,7 @@
  ***/
 
 const { isPackageValid } = require('../bundle/validatorService')
-const cacheService = require('../cacheService')
+const { CacheService } = require('../cacheService')
 const { installPackage } = require('../bundle/installService')
 const { getSize } = require('../bundle/sizeService')
 const { getVersions } = require('../bundle/versionService')
@@ -38,16 +38,17 @@ async function _getVersionsAndSizes(packageName, packageVersion) {
   const versionsAndSizes = []
 
   const versions = await getVersions(packageName, packageVersion)
+  const cache = new CacheService('cache')
 
   for (const version of versions) {
     const cacheKey = `${packageName}-${version}`
-    let versionSize = cacheService.get(cacheKey)
+    let versionSize = cache.get(cacheKey)
 
     if (!versionSize) {
       const packagePath = await installPackage(packageName, version)
       versionSize = await getSize(packageName, packagePath)
 
-      cacheService.set(cacheKey, versionSize)
+      cache.set(cacheKey, versionSize)
     }
 
     versionsAndSizes.push({ version: version, sizes: versionSize })

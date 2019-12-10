@@ -37,6 +37,7 @@ Provides information about npm packages like size when minified or zipped across
 - [morgan](https://github.com/expressjs/morgan)
 - [rollup](https://rollupjs.org/guide/en/)
 - [jest](https://jestjs.io/)
+- [semver](https://github.com/npm/node-semver)
 
 ## Frontend tech stack
 
@@ -61,4 +62,4 @@ Provides information about npm packages like size when minified or zipped across
 
 ## Result
 
-<img width="1181" alt="Screen Shot 2019-12-07 at 11 04 46 PM" src="https://user-images.githubusercontent.com/26199384/70381162-00337980-1946-11ea-80b8-a486b97777e1.png">
+<img width="1256" alt="Screen Shot 2019-12-10 at 1 15 20 AM" src="https://user-images.githubusercontent.com/26199384/70483988-a02a0800-1aea-11ea-9cc9-67a6900dcd51.png">

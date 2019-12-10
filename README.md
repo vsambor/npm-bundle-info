@@ -57,7 +57,7 @@ Provides information about npm packages like size when minified or zipped across
 ### For Backend go to [Backend README](https://github.com/vsambor/npm-bundle-info/blob/master/server/README.md)
 
 ## Misc
- - github workflow CI
+ - [github workflow CI](https://github.com/vsambor/npm-bundle-info/actions?query=workflow%3A%22Node+CI%22)
 
 
 ## Result

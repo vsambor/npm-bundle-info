@@ -9,10 +9,11 @@
  ***/
 
 const fs = require('fs')
+const path = require('path')
 
 class CacheService {
-  constructor(cacheName) {
-    this.cacheFilePath = `/tmp/bundle-info/${cacheName}.json`
+  constructor(cacheName, cachePath = '/tmp/bundle-info') {
+    this.cacheFilePath = path.join(cachePath, cacheName) + '.json'
   }
 
   /**

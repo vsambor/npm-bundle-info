@@ -4,7 +4,7 @@ const { CacheService } = require('../services/cacheService')
 let cache
 
 beforeAll(() => {
-  cache = new CacheService('test-cache')
+  cache = new CacheService('test-cache', './')
 })
 
 describe('Tests realated to caching system', () => {

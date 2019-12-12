@@ -80,6 +80,4 @@ class CacheService {
   }
 }
 
-module.exports = {
-  CacheService
-}
+module.exports = CacheService

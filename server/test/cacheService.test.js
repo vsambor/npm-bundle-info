@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { CacheService } = require('../services/cacheService')
+const CacheService = require('../services/cacheService')
 
 let cache
 

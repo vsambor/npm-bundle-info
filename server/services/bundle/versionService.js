@@ -10,88 +10,89 @@
 const https = require('https')
 const semver = require('semver')
 
-/**
- * Returns 3 minor versions and 1 last major version of an npm package.
- * 
- * @param {String} packageName
- * @param {String} currentVersion
- * @returns {Array} - 4 versions
- */
-async function getVersions(packageName, currentVersion) {
-  // Array of versions sorted ascendent.
-  const packageVersions = await _getAllVersions(packageName)
+class VersionService {
 
-  const fourVersions = _pickOnlyFourVersions(packageVersions, currentVersion)
+  constructor() { }
 
-  return fourVersions
-}
+  /**
+   * Returns 3 minor versions and 1 last major version of an npm package.
+   * 
+   * @param {String} packageName
+   * @param {String} currentVersion
+   * @returns {Array} - 4 versions
+   */
+  async getVersions(packageName, currentVersion) {
+    // Array of versions sorted ascendent.
+    const packageVersions = await this._getAllVersions(packageName)
 
-async function _getAllVersions(packageName) {
-  let jsonResponse
+    const fourVersions = this._pickOnlyFourVersions(packageVersions, currentVersion)
 
-  try {
-    jsonResponse = await _getHttpJSON(`https://registry.npmjs.org/${packageName}`)
-  } catch (error) {
-    console.error('Error: ', error.toString())
+    return fourVersions
   }
 
-  return Object.keys(jsonResponse.versions)
-}
+  async _getAllVersions(packageName) {
+    const url = `https://registry.npmjs.org/${packageName}`
+    const jsonResponse = await this._getHttpJSON(url)
 
-function _pickOnlyFourVersions(versions, currentVersion) {
-  const resultList = []
-  const lastIndex = versions.findIndex(item => item === currentVersion)
+    return Object.keys(jsonResponse.versions)
+  }
 
-  if (versions && lastIndex > 0) {
-    const majorVersion = semver.major(versions[lastIndex])
+  _pickOnlyFourVersions(versions, currentVersion) {
+    const resultList = []
+    const lastIndex = versions.findIndex(item => item === currentVersion)
 
-    for (let i = lastIndex; i >= 0; --i) {
-      const currVersion = versions[i]
+    if (versions && lastIndex > 0) {
+      const majorVersion = semver.major(versions[lastIndex])
 
-      // Filters out pre release versions.
-      if (!semver.prerelease(currVersion)) {
+      for (let i = lastIndex; i >= 0; --i) {
+        const currVersion = versions[i]
+        const majorChanged = semver.major(currVersion) !== majorVersion
 
-        // Only 3 versions of the same major release are required.
-        if (resultList.length < 3) {
-          resultList.push(currVersion)
-        }
-
-        else if (semver.major(currVersion) != majorVersion) {
-          // The first major release found.
-          resultList.push(currVersion)
-          break
+        // Filters out pre release versions.
+        if (!semver.prerelease(currVersion)) {
+          // Only 3 versions of the same major release are required.
+          if (resultList.length < 3 && !majorChanged) {
+            resultList.push(currVersion)
+          }
+          else if (majorChanged) {
+            // The first major release found.
+            resultList.push(currVersion)
+            break
+          }
         }
       }
     }
+
+    return resultList
   }
 
-  return resultList
-}
+  /**
+   * Handles http requests and returns a promise with a JSON body. 
+   * (used just for code clarity)
+   * 
+   * Inspired by https://gist.github.com/ktheory/df3440b01d4b9d3197180d5254d7fb65
+   * @param {String} url 
+   */
+  _getHttpJSON(url) {
+    return new Promise((resolve, reject) => {
+      https.get(url, res => {
+        let body = ''
+        res.on('data', chunk => body += chunk.toString())
+        res.on('error', reject)
+        res.on('end', () => {
+          if (res.statusCode >= 200 && res.statusCode <= 299) {
+            resolve(JSON.parse(body))
+          } else {
+            if (res.statusCode === 404) {
+              reject({ code: res.statusCode, message: 'Package not found' })
+            }
 
-/**
- * Handles http requests and returns a promise with a JSON body. 
- * (used just for code clarity)
- * 
- * Inspired by https://gist.github.com/ktheory/df3440b01d4b9d3197180d5254d7fb65
- * @param {String} url 
- */
-function _getHttpJSON(url) {
-  return new Promise((resolve, reject) => {
-    https.get(url, res => {
-      let body = ''
-      res.on('data', chunk => body += chunk.toString())
-      res.on('error', reject)
-      res.on('end', () => {
-        if (res.statusCode >= 200 && res.statusCode <= 299) {
-          resolve(JSON.parse(body))
-        } else {
-          reject('Request failed. status: ' + res.statusCode + ', body: ' + body)
-        }
+            reject({ code: res.statusCode, message: 'Get version error' })
+          }
+        })
       })
     })
-  })
+  }
 }
 
-module.exports = {
-  getVersions
-}
+module.exports = VersionService

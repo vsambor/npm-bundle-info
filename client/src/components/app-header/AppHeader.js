@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './AppHeader.css'
 
 /**
- * Renders 
+ * Renders the main page header.
  */
 function AppHeader() {
   return (

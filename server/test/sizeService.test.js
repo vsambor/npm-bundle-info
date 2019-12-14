@@ -1,21 +1,24 @@
-describe('Tests realated to all procecess to get bundle size', () => {
-  it('Should work', () => {
-    expect(1).toEqual(1);
-  });
+const fs = require('fs')
+const path = require('path')
+const { getSize } = require('../services/bundle/sizeService')
+const { build } = require('../services/bundle/buildService')
+const { installPackage, removePackage } = require('../services/bundle/installService')
 
-  it('Should test install', () => {
+let packagePath
+beforeAll(async () => {
+  packagePath = await installPackage('lodash', '1.0.0')
+})
 
-  });
+describe('Tests for getting the bundle size', () => {
+  it('Should read stats.js and get minified and gziped size details', async () => {
+    const size = await getSize('lodash', packagePath)
 
-  it('Should test build', () => {
+    expect(size).toBeTruthy()
+    expect(size.minifiedSize).toBeTruthy()
+    expect(size.gzippedSize).toBeTruthy()
+  })
 
-  });
-
-  it('Should test size', () => {
-
-  });
-
-  it('Should test remove package', () => {
-
-  });
-});
+  it('Should remove the package after getting the size', () => {
+    expect(fs.existsSync(packagePath)).toEqual(false)
+  })
+})

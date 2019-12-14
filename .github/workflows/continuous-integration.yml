@@ -1,4 +1,4 @@
-name: Node CI
+name: Continuous-Integration
 
 on: [push]
 
@@ -33,11 +33,7 @@ jobs:
     - name: FRONT - test
       working-directory: ./client
       run: CI=true yarn test 
-    
-    - name: FRONT - security test
-      working-directory: ./client
-      run: yarn audit 
-    
+      
     #
     # --- BACKEND ---
     #
@@ -52,7 +48,3 @@ jobs:
     - name: BACK - test
       working-directory: ./server
       run: npm test
-      
-    - name: BACK - security test
-      working-directory: ./server
-      run: npm audit

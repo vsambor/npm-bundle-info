@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import Autocomplete from 'react-autocomplete'
+import classnames from 'classnames'
 import './SearchInput.css';
 import { getSuggestionsAPI } from '../../services/npmApi'
 
@@ -11,7 +12,7 @@ SearchInput.propTypes = {
 
 SearchInput.defaultProps = {
   onItemSelected: () => { console.warn('SearchInput prop [onItemSelected] is required') }
-};
+}
 
 /**
  * Bundle search autocomplete component.
@@ -60,11 +61,12 @@ function SearchInput(props) {
     return <div className="search-input-menu" children={items}></div>
   }
 
-  const _renderSuggestionItem = item => {
+  const _renderSuggestionItem = (item, isHighlited) => {
     const key = item.package.name + item.package.version + item.searchScore
 
     return (
-      <div className="search-input-suggestion-container" key={key}>
+      <div className={classnames('search-input-suggestion-container',
+        { 'search-input-suggestion-hover': isHighlited })} key={key}>
         <div className="search-input-suggestion-name">
           {item.package.name}
         </div>

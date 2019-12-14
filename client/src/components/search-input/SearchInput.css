@@ -14,7 +14,7 @@
   padding: 2px 10px;
 }
 
-.search-input-suggestion-container:hover {
+.search-input-suggestion-hover {
   background-color: lightgray;
 }
 

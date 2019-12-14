@@ -2,7 +2,9 @@
 Provides information about npm packages like size when minified or zipped across multiple bundle versions. 
 
 ## Status
-![](https://img.shields.io/github/workflow/status/vsambor/npm-bundle-info/Node%20CI?style=for-the-badge)
+![](https://img.shields.io/github/workflow/status/vsambor/npm-bundle-info/Continuous-Integration?style=for-the-badge&label=CI&logo=github)
+
+![](https://img.shields.io/github/workflow/status/vsambor/npm-bundle-info/Security-Check?style=for-the-badge&label=Security&logo=npm)
 
 ## Main tech versions
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)

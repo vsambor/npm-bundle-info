@@ -1,10 +1,9 @@
-name: Security-Check
+name: SECURITY-CHECK
 
 on: [push]
 
 jobs:
-  build:
-
+  check-front:
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,17 +17,27 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    
-    #
-    # --- FRONTEND ---
-    #
-    - name: FRONT - security test
+
+    - name: FRONT - security check
       working-directory: ./client
       run: yarn audit 
     
-    #
-    # --- BACKEND ---
-    # 
-    - name: BACK - security test
+
+  check-back:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: BACK - security check
       working-directory: ./server
       run: npm audit

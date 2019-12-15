@@ -4,6 +4,7 @@ import Autocomplete from 'react-autocomplete'
 import classnames from 'classnames'
 import './SearchInput.css';
 import { getSuggestionsAPI } from '../../services/npmApi'
+import debounce from 'debounce'
 
 
 SearchInput.propTypes = {
@@ -28,15 +29,11 @@ function SearchInput(props) {
   const [items, setItems] = useState([])
   const [selectedBundle, setSelectedBundle] = useState('')
 
-  // TODO - use debounce for perf.
   const _handleOnChange = e => {
     const inputValue = e.target.value
 
     setSelectedBundle(inputValue || '')
-
-    if (inputValue) {
-      getSuggestionsAPI(inputValue).then(items => setItems(items))
-    }
+    getSuggestions(inputValue, setItems)
   }
 
   const _handleOnSelect = (itemText, itemValue) => {
@@ -93,5 +90,13 @@ function SearchInput(props) {
     </form>
   )
 }
+
+const getSuggestions = debounce((value, setItems) => {
+  if (value) {
+    getSuggestionsAPI(value).then(items => setItems(items))
+  } else {
+    setItems([])
+  }
+}, 300)
 
 export default SearchInput

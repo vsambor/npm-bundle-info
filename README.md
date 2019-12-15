@@ -6,7 +6,7 @@ Provides information about npm packages like size when minified or zipped across
 
 ![](https://img.shields.io/github/workflow/status/vsambor/npm-bundle-info/FRONT-CI?style=for-the-badge&label=FRONT-CI&logo=github)
 
-![](https://img.shields.io/github/workflow/status/vsambor/npm-bundle-info/Security-Check?style=for-the-badge&label=Security&logo=npm)
+![](https://img.shields.io/github/workflow/status/vsambor/npm-bundle-info/SECURITY-CHECK?style=for-the-badge&label=Security&logo=npm)
 
 ## Main tech versions
 ![node.js](https://img.shields.io/badge/node-12.8.0-green.svg)

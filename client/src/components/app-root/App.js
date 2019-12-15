@@ -23,8 +23,6 @@ function App() {
       // TODO - implement an error handler component?
       console.warn('WARNING: The selected bundle does not have name or version!')
     }
-
-    // setSpinnerVisible(!isSpinnerVisible)
   }
 
   return (

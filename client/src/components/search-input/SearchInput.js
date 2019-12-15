@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import Autocomplete from 'react-autocomplete'
+import classnames from 'classnames'
 import './SearchInput.css';
 import { getSuggestionsAPI } from '../../services/npmApi'
+import debounce from 'debounce'
 
 
 SearchInput.propTypes = {
@@ -11,7 +13,7 @@ SearchInput.propTypes = {
 
 SearchInput.defaultProps = {
   onItemSelected: () => { console.warn('SearchInput prop [onItemSelected] is required') }
-};
+}
 
 /**
  * Bundle search autocomplete component.
@@ -27,15 +29,11 @@ function SearchInput(props) {
   const [items, setItems] = useState([])
   const [selectedBundle, setSelectedBundle] = useState('')
 
-  // TODO - use debounce for perf.
   const _handleOnChange = e => {
     const inputValue = e.target.value
 
     setSelectedBundle(inputValue || '')
-
-    if (inputValue) {
-      getSuggestionsAPI(inputValue).then(items => setItems(items))
-    }
+    getSuggestions(inputValue, setItems)
   }
 
   const _handleOnSelect = (itemText, itemValue) => {
@@ -60,11 +58,12 @@ function SearchInput(props) {
     return <div className="search-input-menu" children={items}></div>
   }
 
-  const _renderSuggestionItem = item => {
+  const _renderSuggestionItem = (item, isHighlited) => {
     const key = item.package.name + item.package.version + item.searchScore
 
     return (
-      <div className="search-input-suggestion-container" key={key}>
+      <div className={classnames('search-input-suggestion-container',
+        { 'search-input-suggestion-hover': isHighlited })} key={key}>
         <div className="search-input-suggestion-name">
           {item.package.name}
         </div>
@@ -91,5 +90,13 @@ function SearchInput(props) {
     </form>
   )
 }
+
+const getSuggestions = debounce((value, setItems) => {
+  if (value) {
+    getSuggestionsAPI(value).then(items => setItems(items))
+  } else {
+    setItems([])
+  }
+}, 300)
 
 export default SearchInput
